@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TI SPORTS</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- HLS.js for ExoPlayer -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #00008888;
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #913;
+            text-align: center;
+            padding: 10px 0;
+        }
+        header h1 {
+            color :#36B5E5 ;
+            font-size: 2em;
+            margin: 0;
+        }
+        .quick-links, .contact-info {
+            background-color: #A4C6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #33B5E5;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #33B5E5;
+        }
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .channel {
+            background-color: #2dffffff;
+            border-radius: 50%;
+            text-align: center;
+            padding: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .channel img {
+            max-width: 100%;
+            border-radius: 50%;
+        }
+        .channel:hover {
+            transform: scale(1.1);
+        }
+        .video-container {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .video-container video {
+            width: 100%;
+            max-width: 800px;
+            border: 2px solid #7fff00;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.8em;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #F568;
+        }
+        
+        
+        #video-player {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #exo-video {
+            width: 90%;
+            height: auto;
+            border: 1px solid #00ff00;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 255, 0, 0.6);
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #00cc66;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .welcome-box {
+            background-color: black;
+            padding: 10px;
+            border: 2px solid Green;
+            margin-top: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .welcome-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 18s linear infinite;
+            font-size: 20px;
+            color: #00ff00;
+            font-weight: bold;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SPORTS</h1>
+        <p>BY - GAZI LIVE TV  </p>
+    </header>
+
+    <div class="container">
+       
+              
+          
+        </div>
+                             
+        <!-- Live Channels Section -->
+            <div class="channels-grid">
+           <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167573.m3u8">
+                <img src= "https://media.insider.in/image/upload/c_crop,g_custom/v1740654502/xweofraewhomyssz3th7.jpg"alt="IND vs BAN">
+            
+          </div>
+           <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8">
+                <img src="https://pbs.twimg.com/media/Gi7VE9NXAAAvUEE.jpg" alt="IND vs BAN">
+            
+            
+          </div>
+      
+           <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://globalstreamz.xyz:3050/live/redbone196304@gmail.com/Cb8jgjL63Z/509152.m3u8">
+                <img src="https://i5.walmartimages.com/asr/3c5cd2e4-8dc5-48fd-96ec-8d27f2be1a91.3729bfbd1cee54b4b9669886e84f4fc8.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="IND vs BAN">
+                </div>
+           <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8">
+                <img src="https://yt3.googleusercontent.com/eY6Yt0YDmWSheMmneYNjUD_2N5p8r2nFca9CENifrZ9TugWxrQW24oznjqBJPOFmSs2M6avemg=s900-c-k-c0x00ffffff-no-rj" alt="IND vs BAN">
+            
+          </div>
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="https://tvn1.chowdhury-shaheb.com/gazitv/tracks-v1a1/mono.m3u8">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6qkL-MDOUgsDJ9fs8PF7FJOLhnbaM4a3HFA&s" alt="AUS vs ENG">
+            </div>
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://starshare.org:8080/live/50374/50374/3802.m3u8">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdMWIwsVO-ByF__z8OxtXtaPV2Epe3uhsvfC5oTZ8J8PIpidOQS818Fyiw625lOP_nXVE&usqp=CAU" alt="AUS vs ENG">
+            </div>
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167570.m3u8">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxHRDOCmuTjsFL3nBokR39tAb1pvH87Bu7eT2tMLSmbZb8WAI5jpYgC6eW6rNmWiIeo7A&usqp=CAU" alt="AUS vs ENG">
+            </div>
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167571.m3u8">
+                <img src="https://tvtick.com/img/channel/689.jpg" alt="AUS vs ENG">
+            
+            </div>
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://filex.tv:8080/live/shakeelmirza/4110440/52086.m3u8">
+                <img src="https://tvtick.com/img/channel/153.jpg" alt="AUS vs ENG">
+                   </div>
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167580.m3u8">
+                <img src="https://www.sonypicturesnetworks.com/images/logos/SONY_SportsTen5_SD_Logo_CLR.png" alt="AUS vs ENG">
+            </div>
+        
+  
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167573.m3u8">
+                <img src="https://www.indiantelevision.com/sites/default/files/images/tv-images/2019/04/19/starspoerts1.jpg" alt="AUS vs ENG">
+            </div>
+            
+        
+  
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167576.m3u8">
+                <img src="https://bdixtv24.com/assets/images/Star%20Sports%20HD%2021731554879.png" alt="AUS vs ENG">
+        </div>
+        
+            
+        
+  
+             
+             <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167577.m3u8">
+                <img src="https://blog.themediaant.com/wp-content/uploads/2022/02/STAR-SPORTS-3.jpg" alt="AUS vs ENG">
+                
+        </div>
+        
+          <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167577.m3u8">
+                <img src="https://blog.themediaant.com/wp-content/uploads/2022/02/STAR-SPORTS-3.jpg" alt="AUS vs ENG">
+        </div>
+        <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167578.m3u8">
+                <img src="https://smartads.in/resources/assets/uploads/product_group/television/star-sports-select-1-hd.png" alt="AUS vs ENG">
+        </div>
+         <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://globalstreamz.xyz:3050/live/redbone196304@gmail.com/Cb8jgjL63Z/659510.m3u8">
+                <img src="https://tvtick.com/img/channel/646.jpg" alt="AUS vs ENG">
+        </div>
+         <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/219689.m3u8">
+                <img src="https://yt3.googleusercontent.com/7ko4g0YM7E49IIbhfMhYJOWGTCIAuASHcPXRsBPWMOiBIuM0tBHe2Z9OVkzO1vVSxGSDZ1f1Sg=s900-c-k-c0x00ffffff-no-rj" alt="AUS vs ENG">
+        </div>
+        <div class="channel live-indicator" onclick="openVideoPlayer(this)" data-video-url="http://xtv.ooo:8080/live/sami12/827272/167567.m3u8">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa4_S311jnVu0hbfAx70u2Q1b8kaTP53LVLQuj_fDBoBuhA5E5180MD4gWYIAAQarq3DE&usqp=CAU" alt="AUS vs ENG">
+        </div>
+     </div>
+ 
+        <!-- Video Player Section -->
+       <div id="video-player">
+    <button class="back-button" onclick="closeVideoPlayer()">EXIT PLAYER</button>
+    <video id="exo-video" controls autoplay></video>
+</div>
+
+      
+ 
+        <!-- Contact Info Section -->
+        <div class="contact-info">
+            <h2>ABOUT US </h2>
+            WE ARE A LIVE TV COMPANY GAZI LIVE TV ONE OF THE BEST LIVE TV AND SPORTS PLATFROM 
+            <p>CONTACT US : <strong>@gazilivetvdownloadapp</strong></p
+        
+    </div>
+
+    <footer>DEVELOPED BY - MD GAZI </footer>
+    </footer>
+
+    <script>
+        function openVideoPlayer(element) {
+        const videoUrl = element.getAttribute('data-video-url');
+        const video = document.getElementById("exo-video");
+
+        if (Hls.isSupported()) {
+            let hls = new Hls();
+            hls.loadSource(videoUrl);
+            hls.attachMedia(video);
+        } else {
+            video.src = videoUrl;
+        }
+
+        document.getElementById('video-player').style.display = 'flex';
+    }
+
+    function closeVideoPlayer() {
+        document.getElementById('video-player').style.display = 'none';
+        document.getElementById("exo-video").pause();
+    }
+
+    function checkLiveMatches() {
+    const now = new Date(); // বর্তমান সময়
+    document.querySelectorAll('.match-card').forEach(card => {
+        const startTime = new Date(card.getAttribute('data-start-time')); // ম্যাচের শুরুর সময়
+        const endTime = new Date(card.getAttribute('data-end-time')); // ম্যাচের শেষ সময়
+const liveIndicator = card.querySelector('.live-indicator');
+        const matchTimeElement = card.querySelector('.match-time');
+        
+        // ম্যাচের সময়ের UTC থেকে স্থানীয় সময় এ কনভার্ট করা হচ্ছে
+        const startTimeLocal = new Date(startTime.getTime() + startTime.getTimezoneOffset() * 60000);
+        const endTimeLocal = new Date(endTime.getTime() + endTime.getTimezoneOffset() * 60000);
+        
+        // যদি বর্তমান সময় স্টার্ট টাইমের পরে এবং ইনড টাইমের আগে হয়, তবে ম্যাচ লাইভ হিসেবে চিহ্নিত হবে
+        if (now >= startTimeLocal && now <= endTimeLocal) {
+            liveIndicator.style.display = 'block'; // লাইভ ইন্ডিকেটর প্রদর্শন
+            matchTimeElement.style.display = 'none'; // ম্যাচ সময় লুকিয়ে দেওয়া
+        } else {
+            liveIndicator.style.display = 'none'; // লাইভ ইন্ডিকেটর লুকিয়ে রাখা
+            matchTimeElement.style.display = 'block'; // ম্যাচ সময় আবার দেখানো
+            matchTimeElement.innerHTML = startTimeLocal.toLocaleTimeString(); // সময় দেখানো
+        }
+    });
+}
+
+// প্রতি মিনিটে লাইভ ম্যাচ চেক করতে 60000ms (1 মিনিট) পর পর ফাংশনটি কল হবে
+setInterval(checkLiveMatches, 60000);
+checkLiveMatches();
+
+  
+    
+</script>
+
+</body>
+</html>
